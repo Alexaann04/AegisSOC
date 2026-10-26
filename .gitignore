@@ -1,0 +1,21 @@
+# Python environment and generated files
+.venv/
+__pycache__/
+*.py[cod]
+*.bak
+
+# Local incident data and processing state
+data/*
+!data/.gitkeep
+
+# Backups, logs, and raw lab evidence
+backups/
+logs/
+evidence/
+
+# Local secrets and environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key

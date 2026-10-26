@@ -46,14 +46,13 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and
 
 - Python source files compile successfully.
 - The latest incident review found 523 parseable incident records.
-- Earlier validation checked incident IDs; revalidate uniqueness against the current 523-record history before claiming it.
-- No duplicate incident IDs were found.
+- The current incident history contains 523 valid records with 523 unique IDs, zero duplicate IDs, and zero invalid or missing-ID records.
 - Incident statuses include `NEW`, `APPROVED_FOR_DRY_RUN`, and `REJECTED`.
-- All 170 records in the inspected alert snapshot parse as JSON Lines.
+- The current snapshot contains 1,068 unique alert IDs; all match the 1,068 IDs in the ingestion state.
 - Windows Security telemetry from agent `003` was observed in Wazuh archives.
 - Wazuh analysis configuration test completed without reported errors.
-- The failed-logon custom detection is configured, but a fresh Event ID 4625
-  triggering the custom rules has not yet been verified.
+- A Windows Event ID 4625 from agent `003` was observed triggering custom rule `100102` at level 8 on October 22, 2026.
+- Threshold rule `100101` and the updated MITRE mapping remain unverified.
 
 ## Safety and limitations
 

@@ -102,16 +102,51 @@ Use the review script's supported commands and arguments for approval,
 rejection, or dry-run simulation. Check the script's usage output before
 performing a review action.
 
-## Data protection
+## Data Protection and Operational Safety
 
-The incident history and alert snapshot are project data. Back them up before
-changing processing logic or running a batch operation. Do not delete or reset
-the existing incident history to make a test pass.
+AegisSOC processes persistent security telemetry, alert snapshots, incident
+records, processing checkpoints, and analyst review decisions. These records
+are operational evidence and must be preserved.
 
-## Intended use
+- Back up relevant project data before changing processing logic, schemas, or
+  batch workflows.
+- Validate changes against isolated test copies whenever practical.
+- Preserve incident history, alert snapshots, processing checkpoints, and
+  analyst decisions.
+- Never delete or reset existing records merely to make a test pass.
+- Keep incident processing idempotent and investigate duplicate or missing
+  records before making corrections.
+- Document test conditions, expected outcomes, observed results, and limitations.
 
-For cybersecurity learning, lab validation, portfolio demonstration, and
-controlled testing only.
+## Intended Use and Operational Scope
+
+AegisSOC is a hands-on Security Operations Center (SOC) engineering lab built
+around endpoint telemetry collection, SIEM detection, incident processing,
+AI-assisted triage, and analyst-controlled review.
+
+The lab uses Windows endpoint telemetry, Wazuh monitoring, and locally hosted
+AI analysis to investigate security events and assess potential incidents.
+Controlled security-event generation and attack emulation are restricted to
+systems owned by the operator or explicitly authorized for testing.
+
+The intended workflow is:
+
+1. **Endpoint telemetry:** collect relevant Windows security events.
+2. **SIEM detection:** ingest events into Wazuh and evaluate detection rules.
+3. **Incident processing:** preserve alert evidence, deduplicate eligible alerts,
+   and create structured incident records.
+4. **AI-assisted triage:** use local Ollama/Qwen analysis for advisory
+   investigation guidance based on supplied evidence.
+5. **Analyst review:** record review decisions and evaluate dry-run responses.
+
+**Response safety:** AI analysis is advisory only. Incident approval does not
+automatically authorize or execute endpoint isolation, account disabling,
+process termination, or network containment. Any future response integration
+requires explicit authorization, safeguards, and independent validation.
+
+**Evidence standard:** a configured detection rule is not considered validated
+until the expected endpoint event, corresponding SIEM alert, and resulting
+incident-processing behavior have been verified and documented.
 
 ## Evidence-Aware Investigation Records
 

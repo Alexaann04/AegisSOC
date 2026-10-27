@@ -125,49 +125,33 @@ performing a review action.
 
 ## Data Protection and Operational Safety
 
-AegisSOC processes persistent security telemetry, alert snapshots, incident
-records, processing checkpoints, and analyst review decisions. These records
-are operational evidence and must be preserved.
+AegisSOC processes persistent security telemetry, alert snapshots, incident records, and analyst review decisions. These records are treated as operational evidence and must be preserved.
 
-- Back up relevant project data before changing processing logic, schemas, or
-  batch workflows.
+- Back up relevant project data before modifying processing logic, schemas, or batch workflows.
 - Validate changes against isolated test copies whenever practical.
-- Preserve incident history, alert snapshots, processing checkpoints, and
-  analyst decisions.
-- Never delete or reset existing records merely to make a test pass.
-- Keep incident processing idempotent and investigate duplicate or missing
-  records before making corrections.
-- Document test conditions, expected outcomes, observed results, and limitations.
+- Preserve existing incident history, alert snapshots, processing checkpoints, and analyst decisions.
+- Never delete or reset production-like records merely to make a test pass.
+- Keep incident processing idempotent and investigate duplicate or missing records before making corrections.
+- Document test conditions, expected outcomes, observed results, and any limitations.
 
 ## Intended Use and Operational Scope
 
-AegisSOC is a hands-on Security Operations Center (SOC) engineering lab built
-around endpoint telemetry collection, SIEM detection, incident processing,
-AI-assisted triage, and analyst-controlled review.
+AegisSOC is a hands-on Security Operations Center (SOC) engineering project built around endpoint telemetry collection, SIEM detection, incident processing, AI-assisted triage, and analyst-controlled response workflows.
 
-The lab uses Windows endpoint telemetry, Wazuh monitoring, and locally hosted
-AI analysis to investigate security events and assess potential incidents.
-Controlled security-event generation and attack emulation are restricted to
-systems owned by the operator or explicitly authorized for testing.
+The lab uses Windows endpoint telemetry, Wazuh security monitoring, and locally hosted AI analysis to investigate suspicious activity and assess potential security incidents. Controlled security-event generation and attack emulation may be conducted only on systems owned by the operator or explicitly authorized for testing.
 
-The intended workflow is:
+The platform is designed to demonstrate practical SOC workflows, including:
 
-1. **Endpoint telemetry:** collect relevant Windows security events.
-2. **SIEM detection:** ingest events into Wazuh and evaluate detection rules.
-3. **Incident processing:** preserve alert evidence, deduplicate eligible alerts,
-   and create structured incident records.
-4. **AI-assisted triage:** use local Ollama/Qwen analysis for advisory
-   investigation guidance based on supplied evidence.
-5. **Analyst review:** record review decisions and evaluate dry-run responses.
+- Windows security-event collection and investigation.
+- Detection-rule validation against observed telemetry.
+- Alert enrichment and incident prioritization.
+- AI-generated investigative recommendations with evidence-based reasoning.
+- Human review, approval tracking, and dry-run response evaluation.
+- Auditability, data integrity, and reproducible validation.
 
-**Response safety:** AI analysis is advisory only. Incident approval does not
-automatically authorize or execute endpoint isolation, account disabling,
-process termination, or network containment. Any future response integration
-requires explicit authorization, safeguards, and independent validation.
+**Response safety:** AI analysis is advisory only. Incident approval does not automatically authorize or execute endpoint isolation, account disabling, process termination, or other containment actions. Any future response integration must include explicit authorization, safeguards, and independent validation.
 
-**Evidence standard:** a configured detection rule is not considered validated
-until the expected endpoint event, corresponding SIEM alert, and resulting
-incident-processing behavior have been verified and documented.
+**Evidence standard:** A configured detection rule is not considered validated until its expected event, corresponding SIEM alert, and resulting incident-processing behavior have been verified and documented.
 
 ## Evidence-Aware Investigation Records
 

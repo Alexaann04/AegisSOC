@@ -51,13 +51,13 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and
 - The current snapshot contains 1,068 unique alert IDs; all match the 1,068 IDs in the ingestion state.
 - Windows Security telemetry from agent `003` was observed in Wazuh archives.
 - Wazuh analysis configuration test completed without reported errors.
-- A Windows Event ID 4625 from agent `003` was observed triggering custom rule `100102` at level 8 on October 22, 2026.
+- Custom failed-logon rule `100102` is configured; its historical trigger on October 22, 2026 could not be independently re-verified from the currently available logs.
 - Threshold rule `100101` and the updated MITRE mapping remain unverified.
 
 ## Safety and limitations
 
 This is a lab prototype, not a production-ready autonomous SOC platform.
-A Windows Event ID 4625 was observed triggering custom rule `100102` on October 22, 2026. A fresh event confirming the updated MITRE mapping and a trigger of threshold rule `100101` remain to be verified.
+The October 22, 2026 trigger of custom rule `100102` is a historical claim that could not be independently re-verified during the latest review. A fresh failed-logon event, the updated MITRE mapping, and a trigger of threshold rule `100101` remain to be verified.
 
 The demonstrated response workflow is dry-run only. Do not describe it as
 performing real endpoint isolation, account blocking, or network containment

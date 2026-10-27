@@ -25,16 +25,18 @@ Validation date: 2026-10-22
 - Rule 100102 is configured to match parent rule 60122.
 - Parent rule 60122 matches Windows Event IDs 4625 and 529.
 - Rule 100101 is configured for three matching events within 60 seconds.
-- On October 22, 2026, a Windows Event ID 4625 from agent 003 triggered
-  custom rule 100102 at level 8.
+- A historical trigger of custom rule 100102 on October 22, 2026 was
+  documented, but could not be independently re-verified from the currently
+  available logs. A fresh Event ID 4625 trigger remains unverified.
 - The event represented a failed authentication attempt; a single event
   does not by itself establish brute-force activity.
 - A fresh alert confirming the updated MITRE mapping has not yet been
   verified.
 - A trigger of threshold rule 100101 has not yet been verified.
 
-Result: rule 100102 has demonstrated failed-logon detection. The MITRE
-mapping and repeated-failure threshold remain pending validation.
+Result: rule 100102 is configured, but successful failed-logon detection
+is not currently independently verified. The MITRE mapping and repeated-failure
+threshold remain pending validation.
 
 ## Response validation
 

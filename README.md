@@ -54,6 +54,27 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and
 - Custom failed-logon rule `100102` is configured; its historical trigger on October 22, 2026 could not be independently re-verified from the currently available logs.
 - Threshold rule `100101` and the updated MITRE mapping remain unverified.
 
+## AI Integration and Rationale
+
+AegisSOC uses a locally hosted Large Language Model (LLM) through **Ollama and Qwen2.5:1.5b** to provide advisory assistance during security incident investigation.
+
+### Why I used AI
+
+Security analysts need to review alert details, interpret available evidence, assess potential risks, and prioritize incidents for further investigation. I added local AI assistance to explore how an LLM can help organize incident context and provide useful investigation guidance while keeping the analyst in control.
+
+### How it is used
+
+- Analyzes selected incident fields supplied by AegisSOC.
+- Generates advisory findings to support human investigation.
+- Runs locally through Ollama, without requiring an external LLM API for this integration.
+- Keeps AI analysis separate from incident processing and response actions.
+
+### Human oversight and limitations
+
+The AI is an **advisory assistant, not a validated threat-detection model or autonomous response engine**. Its output may be incomplete or incorrect and must be checked against the available evidence. It does not automatically approve incidents, modify incident records, isolate endpoints, or block network traffic.
+
+This integration demonstrates how local LLM assistance can complement a human-reviewed security operations workflow. It does not claim validated AI detection accuracy or production-ready autonomous response.
+
 ## Safety and limitations
 
 This is a lab prototype, not a production-ready autonomous SOC platform.

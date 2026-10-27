@@ -33,6 +33,27 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) and
 - Python incident processing and review scripts
 - JSON Lines incident history
 
+## Wazuh SIEM Detection Rules
+
+AegisSOC uses custom Wazuh rules for Windows authentication monitoring and Suricata network-alert integration. Wazuh rule levels use a scale from 0 to 15.
+
+| Rule ID | Level | Detection logic | MITRE ATT&CK | Validation status |
+|---|---:|---|---|---|
+| `100102` | 8 | Child of built-in rule `60122`; intended to detect Windows failed authentication when the parent rule matches | No explicit mapping in this rule | Configured; end-to-end detection not yet verified |
+| `100101` | 10 | Correlates matches of rule `100102` using a frequency threshold of 3 within 60 seconds | `T1110` — Brute Force | Configured; correlation trigger not yet verified |
+| `100103` | 8 | Child of built-in rule `86601`; intended to detect Suricata network alerts when the parent rule matches | No explicit mapping in this rule | Definition observed; runtime trigger not verified |
+
+### Detection workflow
+
+1. A Windows endpoint generates a Security event.
+2. Wazuh collects and evaluates the event against its decoders and rules.
+3. Rule `100102` is intended to classify a failed-authentication event when built-in rule `60122` matches.
+4. Rule `100101` is intended to correlate repeated matches of `100102` within 60 seconds.
+5. AegisSOC processes available Wazuh alerts into incident records for analyst review.
+6. Rule `100103` provides a separate integration path for Suricata network alerts.
+
+**Evidence standard:** Rule configuration alone does not prove detection. Validation requires the source event, the corresponding Wazuh alert with the expected rule ID, and evidence of the resulting AegisSOC processing. The latest alert-log query returned no matching entries for rules `100101` or `100102`; their runtime behavior remains unverified. AegisSOC AI analysis is advisory, and this workflow does not automatically perform endpoint containment.
+
 ## Project layout
 
 - `src/incident_processor.py` — alert-to-incident processing

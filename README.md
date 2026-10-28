@@ -52,7 +52,7 @@ AegisSOC uses custom Wazuh rules for Windows authentication monitoring and Suric
 5. AegisSOC processes available Wazuh alerts into incident records for analyst review.
 6. Rule `100103` provides a separate integration path for Suricata network alerts.
 
-**Evidence standard:** Rule configuration alone does not prove detection. Wazuh dashboard evidence confirms runtime alerts for rules `100102` (Windows failed authentication) and `100103` (Suricata network-security alerts). The dashboard showed 47 matching results for the `100103` search within the displayed time range; this count is not proof of 47 distinct attacks. Rule `100101` brute-force correlation remains unverified. End-to-end processing of these specific alerts into AegisSOC incidents has not been established by these screenshots. AI analysis is advisory; the workflow does not automatically perform endpoint containment.
+**Detection validation:** Runtime Wazuh dashboard evidence confirms that custom rule `100102` detects Windows failed-authentication events and rule `100103` generates alerts for Suricata network-security events. The `100103` search returned 47 matching results within the displayed time range; this represents search results, not necessarily 47 unique attacks. Rule `100101` is configured to correlate repeated failed authentications, but its threshold-trigger behavior has not yet been confirmed. The demonstrated Wazuh detections are validated independently of the complete AegisSOC alert-to-incident workflow. Local AI analysis provides advisory investigation support only; incident review remains analyst-controlled, and automated endpoint containment is not implemented.
 
 ## pfSense Network Firewall
 

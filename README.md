@@ -39,9 +39,9 @@ AegisSOC uses custom Wazuh rules for Windows authentication monitoring and Suric
 
 | Rule ID | Level | Detection logic | MITRE ATT&CK | Validation status |
 |---|---:|---|---|---|
-| `100102` | 8 | Child of built-in rule `60122`; intended to detect Windows failed authentication when the parent rule matches | No explicit mapping in this rule | Configured; end-to-end detection not yet verified |
+| `100102` | 8 | Child of built-in rule `60122`; Windows failed-authentication detection | No explicit mapping in this rule | Runtime alert observed in Wazuh dashboard; Level 8 |
 | `100101` | 10 | Correlates matches of rule `100102` using a frequency threshold of 3 within 60 seconds | `T1110` — Brute Force | Configured; correlation trigger not yet verified |
-| `100103` | 8 | Child of built-in rule `86601`; intended to detect Suricata network alerts when the parent rule matches | No explicit mapping in this rule | Definition observed; runtime trigger not verified |
+| `100103` | 8 | Child of built-in rule `86601`; Suricata network-security alert detection | No explicit mapping in this rule | Runtime alerts observed in Wazuh dashboard; Level 8 |
 
 ### Detection workflow
 
@@ -52,7 +52,7 @@ AegisSOC uses custom Wazuh rules for Windows authentication monitoring and Suric
 5. AegisSOC processes available Wazuh alerts into incident records for analyst review.
 6. Rule `100103` provides a separate integration path for Suricata network alerts.
 
-**Evidence standard:** Rule configuration alone does not prove detection. Validation requires the source event, the corresponding Wazuh alert with the expected rule ID, and evidence of the resulting AegisSOC processing. The latest alert-log query returned no matching entries for rules `100101` or `100102`; their runtime behavior remains unverified. AegisSOC AI analysis is advisory, and this workflow does not automatically perform endpoint containment.
+**Evidence standard:** Rule configuration alone does not prove detection. Wazuh dashboard evidence confirms runtime alerts for rules `100102` (Windows failed authentication) and `100103` (Suricata network-security alerts). The dashboard showed 47 matching results for the `100103` search within the displayed time range; this count is not proof of 47 distinct attacks. Rule `100101` brute-force correlation remains unverified. End-to-end processing of these specific alerts into AegisSOC incidents has not been established by these screenshots. AI analysis is advisory; the workflow does not automatically perform endpoint containment.
 
 ## Project layout
 

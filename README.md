@@ -54,6 +54,26 @@ AegisSOC uses custom Wazuh rules for Windows authentication monitoring and Suric
 
 **Evidence standard:** Rule configuration alone does not prove detection. Wazuh dashboard evidence confirms runtime alerts for rules `100102` (Windows failed authentication) and `100103` (Suricata network-security alerts). The dashboard showed 47 matching results for the `100103` search within the displayed time range; this count is not proof of 47 distinct attacks. Rule `100101` brute-force correlation remains unverified. End-to-end processing of these specific alerts into AegisSOC incidents has not been established by these screenshots. AI analysis is advisory; the workflow does not automatically perform endpoint containment.
 
+## pfSense Network Firewall
+
+pfSense is included in the VMware home-lab architecture as a virtual firewall for studying network traffic control and security boundaries.
+
+Its intended role in the lab includes:
+
+- **Firewall policy enforcement:** Allowing or blocking traffic according to configured rules.
+- **Network segmentation:** Supporting separation between virtual lab systems and networks.
+- **Traffic troubleshooting:** Helping investigate connectivity and permitted or denied connections.
+- **Security monitoring context:** Complementing Suricata network intrusion detection and Wazuh SIEM monitoring.
+
+### Component responsibilities
+
+- **pfSense:** Network firewall and traffic policy enforcement.
+- **Suricata:** Network intrusion detection and security alert generation.
+- **Wazuh:** Security-event collection, rule evaluation, and alerting.
+- **AegisSOC:** Structured incident processing and analyst review, with advisory-only local AI analysis.
+
+This section documents pfSense's role in the lab architecture. It does not claim that pfSense firewall logs are currently forwarded to Wazuh or processed by AegisSOC; that integration requires separate validation.
+
 ## Project layout
 
 - `src/incident_processor.py` — alert-to-incident processing

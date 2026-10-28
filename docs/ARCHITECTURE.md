@@ -23,6 +23,7 @@ flowchart TD
 
 - **Wazuh:** Collects endpoint telemetry and evaluates detection rules.
 - **Suricata:** Provides network monitoring in the lab.
+- **pfSense:** Serves as the virtual firewall for configured traffic filtering and network-boundary control in the lab. Forwarding pfSense firewall logs to Wazuh is not documented as validated.
 - **alerts_snapshot.json:** Saved alert input in JSON Lines format.
 - **incident_processor.py:** Processes eligible alert records into incidents.
 - **incidents.jsonl:** Stores structured incident history.
